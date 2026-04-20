@@ -1,4 +1,4 @@
-# 🚀 AWS CloudFormation IaC Web Server Deployment
+# 🚀 AWS CloudFormation Infrastructure as Code (IaC) Web Server Deployment with Troubleshooting
 ![AWS](https://img.shields.io/badge/AWS-CloudFormation-orange)
 ![IaC](https://img.shields.io/badge/Infrastructure%20as%20Code-IaC-blue)
 ![EC2](https://img.shields.io/badge/Amazon-EC2-yellow)
