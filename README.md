@@ -136,7 +136,7 @@ sudo tail -50 /var/log/cloud-init-output.log
 ```
 
 📸 Evidence:  
-![Cloud Init Root Cause](docs/screenshots/02-cloud-init-root-case.png)
+![Cloud Init Root Cause](docs/screenshots/02-cloud-init-root-cause.png)
 
 ---
 
