@@ -1,4 +1,11 @@
 # 🚀 AWS CloudFormation IaC Web Server Deployment
+![AWS](https://img.shields.io/badge/AWS-CloudFormation-orange)
+![IaC](https://img.shields.io/badge/Infrastructure%20as%20Code-IaC-blue)
+![EC2](https://img.shields.io/badge/Amazon-EC2-yellow)
+![VPC](https://img.shields.io/badge/AWS-VPC-green)
+![Linux](https://img.shields.io/badge/OS-Amazon%20Linux%202-lightgrey)
+![Status](https://img.shields.io/badge/Project-Completed-success)
+![Focus](https://img.shields.io/badge/Focus-Troubleshooting-important)
 
 ## 📌 Overview
 
