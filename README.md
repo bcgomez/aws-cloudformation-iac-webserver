@@ -298,12 +298,6 @@ This highlights:
 
 ---
 
-## 🗣️ Interview Explanation
-
-"I deployed a web server using AWS CloudFormation. During deployment, I encountered an error caused by an incorrect package name. I used cloud-init logs to identify the issue, fixed the template, redeployed the stack, and validated the solution."
-
----
-
 ## 📁 Project Structure
 
 ```
