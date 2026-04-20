@@ -1,4 +1,5 @@
 # 🚀 AWS CloudFormation Infrastructure as Code (IaC) Web Server Deployment with Troubleshooting
+
 ![AWS](https://img.shields.io/badge/AWS-CloudFormation-orange)
 ![IaC](https://img.shields.io/badge/Infrastructure%20as%20Code-IaC-blue)
 ![EC2](https://img.shields.io/badge/Amazon-EC2-yellow)
@@ -7,11 +8,18 @@
 ![Status](https://img.shields.io/badge/Project-Completed-success)
 ![Focus](https://img.shields.io/badge/Focus-Troubleshooting-important)
 
+---
+
 ## 📌 Overview
 
-This project demonstrates how to deploy a web server on AWS using Infrastructure as Code (IaC) with AWS CloudFormation.
+This project demonstrates how to deploy a web server on AWS using **Infrastructure as Code (IaC)** with AWS CloudFormation.
 
-The deployment includes networking resources, an EC2 instance, and an automated Apache installation using user data scripts. Additionally, this project documents a real troubleshooting scenario during deployment.
+It includes:
+
+- Automated infrastructure provisioning  
+- AWS networking configuration (VPC, Subnet, IGW)  
+- EC2 deployment with Apache (`httpd`)  
+- Real-world troubleshooting using cloud-init logs  
 
 ---
 
@@ -28,7 +36,7 @@ The deployment includes networking resources, an EC2 instance, and an automated 
 
 Manual AWS infrastructure setup is inefficient and error-prone.
 
-This lab solves:
+This project solves:
 
 - ❌ Manual provisioning  
 - ❌ Network misconfigurations  
@@ -42,7 +50,15 @@ Using:
 
 ---
 
-## 🏗️ Architecture Components
+## 🏗️ Architecture Diagram
+
+![Architecture Diagram](docs/screenshots/architecture-diagram.png)
+
+> Public subnet with direct internet access through Internet Gateway, enabling HTTP traffic to EC2 instance.
+
+---
+
+## 🧱 Architecture Components
 
 - Amazon VPC  
 - Public Subnet  
@@ -66,8 +82,6 @@ aws cloudformation create-stack \
 --parameters ParameterKey=KeyName,ParameterValue=vockey
 ```
 
-This command launches all AWS resources defined in the template.
-
 ---
 
 ### 2️⃣ Monitor Stack Creation
@@ -80,10 +94,9 @@ aws cloudformation describe-stack-resources \
 --output table
 ```
 
-This allows real-time monitoring of resource creation.
-
-📸 Evidence:  
 ![Stack Monitoring](docs/screenshots/04-stack-create-complete.png)
+
+> Real-time monitoring of CloudFormation resource creation.
 
 ---
 
@@ -107,43 +120,29 @@ http://<PUBLIC-IP>
 
 ## ⚠️ Issue Encountered: SSH Timeout
 
-📸 Evidence:  
 ![SSH Timeout](docs/screenshots/00-ssh-timeout.png)
 
-At this stage, the SSH connection failed.
-
-Possible causes:
-
-- Instance not ready  
-- Temporary lab/network issue  
-- Security or routing delay  
+> Initial SSH connection failed due to instance readiness/network timing.
 
 ---
 
 ## 🟢 SSH Connection Successful
 
-📸 Evidence:  
 ![SSH Success](docs/screenshots/01-ssh-connection-success.png)
 
-After retrying, the connection succeeded.
-
-Confirms:
-
-- EC2 is reachable  
-- SSH works correctly  
+> Connection succeeded after retry, confirming EC2 accessibility.
 
 ---
 
 ## ⚠️ Deployment Failure Investigation
 
-To identify the issue:
-
 ```bash
 sudo tail -50 /var/log/cloud-init-output.log
 ```
 
-📸 Evidence:  
 ![Cloud Init Root Cause](docs/screenshots/02-cloud-init-root-cause.png)
+
+> Cloud-init logs used to identify installation failure.
 
 ---
 
@@ -155,13 +154,10 @@ yum install -y http
 
 ❌ Incorrect package name
 
-This caused the web server installation to fail.
-
 ---
 
 ## 🛠️ Template Fix
 
-📸 Evidence:  
 ![Template Fix](docs/screenshots/03-template-fix.png)
 
 Fix applied:
@@ -169,8 +165,6 @@ Fix applied:
 ```
 http → httpd
 ```
-
-Correct commands:
 
 ```bash
 yum install -y httpd
@@ -199,32 +193,21 @@ aws cloudformation create-stack \
 
 ## ✅ Stack Creation Successful
 
-📸 Evidence:  
 ![Stack Complete](docs/screenshots/04-stack-create-complete.png)
 
-All resources reached:
-
-```
-CREATE_COMPLETE
-```
+> All resources reached CREATE_COMPLETE status.
 
 ---
 
 ## 🌐 Final Validation
 
-📸 Evidence:  
 ![Browser Validation](docs/screenshots/05-browser-validation.png)
-
-Output:
 
 ```
 Hello from your web server!
 ```
 
-Confirms:
-
-- Apache running  
-- HTTP access working  
+> Apache successfully running and accessible via HTTP.
 
 ---
 
@@ -234,7 +217,7 @@ Common issues:
 
 - SSH timeout  
 - CloudFormation rollback  
-- Script errors  
+- User data script errors  
 - Package installation issues  
 
 ---
@@ -261,8 +244,6 @@ sudo tail -50 /var/log/cloud-init-output.log
 - Public IP  
 
 ### 4. Fix and Redeploy
-
-Repeat deployment after correcting errors.
 
 ---
 
@@ -297,13 +278,8 @@ http vs httpd
 
 Can break an entire deployment.
 
-This highlights:
-
-- Importance of logs  
-- Debugging skills  
-- Attention to detail  
-
 ---
+
 
 ## 📁 Project Structure
 
